@@ -1,7 +1,7 @@
 {
   "name": "pca-music",
   "version": "0.0.1",
-  "author": "Ionic Framework",
+  "author": "Andrea Vecino",
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",
