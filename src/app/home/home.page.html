@@ -36,4 +36,16 @@
     Here's a small text description for the card content. Nothing more, nothing less.
   </ion-card-content>
 </ion-card>
+
+<!-- Demo de Storage -->
+ <div>
+    <h3>Demo Ionic Storage</h3>
+    <div [style.background-color]="colorActual">
+      <p>Team Actual: {{ colorActual === colorOscuro ? 'Oscuro' : 'Claro'}}</p>
+    </div>
+ </div>
+
+ <div>
+    <ion-button (click)="cambiarColor()">Cambiar Team y Guardar</ion-button>
+ </div>
 </ion-content>
