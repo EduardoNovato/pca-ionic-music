@@ -12,6 +12,12 @@ import { Router } from '@angular/router';
 })
 export class IntroPage implements OnInit {
 
+  //organizar to el intro con slides dinamicos 
+//minimo 4 slides
+//utilizar variable de class
+//utilizar ccs utilities
+//agregar un boton que nos lleve al home 
+
   constructor(private router: Router) { }
 
   ngOnInit() {
@@ -20,6 +26,6 @@ export class IntroPage implements OnInit {
   goBack(){
     console.log("Volver")
     this.router.navigateByUrl("/home");
-    //al volver atras o volver al hime guardar en el storage que ya estuve o vi la pagina de intro
+    //al volver atras o volver al home guardar en el storage que ya estuve o vi la pagina de intro
   }
 }
