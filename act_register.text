@@ -1,0 +1,10 @@
+-crear pagina de registro
+-vamos a crear formulario reactivo (nombre,apellido,email,contraseña)
+-validaciones
+-mensajes de error
+-se habilite el boton registro solo si todo el formulario esta correcto
+-vamos a crear un servicio que reciba los datos de registro
+-si el servicio devuvelve accept, navegar hacia login y guarda los datos de registro en le storage 
+-si no que muestre el mensaje de error si el registro no fue exitoso
+-un boton para volver a login 
+-*en login* un boton o link que me lleve a la pagina de registro
