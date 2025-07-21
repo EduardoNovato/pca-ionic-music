@@ -3,6 +3,7 @@ import { IonicModule } from '@ionic/angular'
 import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { StorageService } from '../services/storage.service';
+import { MusicService } from '../services/music.service';
 
 @Component({
   selector: 'app-home',
@@ -15,6 +16,7 @@ export class HomePage implements OnInit {
   colorClaro = 'var(--color-claro)';
   colorOscuro = 'var(--color-oscuro';
   colorActual = this.colorOscuro;
+  colorDiferente = this.colorClaro;
   //[Tarea]: agregar informacion de minino 3 slides para mostrar en la vista
   //[Tarea]: cambiar mediante el click de un boton el tema (color) de los slides.
   genres = [
@@ -24,16 +26,35 @@ export class HomePage implements OnInit {
       description: "Lorem ipsum is a placeholder or dummy text used in typesetting and graphic design for previewing layouts. It features scrambled Latin text, which emphasizes the design over content of the layout. It is the standard placeholder text of the printing and publishing industries. It does not have any meaningful content and is often used to fill spaces in design mockups."
     }
   ]
-  constructor(private storageServcie: StorageService) {}
+  tracks: any;
+  albums: any;
+  constructor(private storageServcie: StorageService, private musicService: MusicService) {}
 
   async ngOnInit() {
+    this.loadAlbums();
+    this.loadTracks();
     await this.loadStorageData();
     this.simularCargaDatos();
+  }
+
+  loadTracks(){
+    this.musicService.getTracks().then(tracks => {
+      this.tracks = tracks;
+      console.log(this.tracks, "las canciones")
+    })
+  }
+
+  loadAlbums(){
+    this.musicService.getAlbums().then(albums => {
+      this.albums = albums;
+      console.log(this.albums, "los albums")
+    })
   }
 
   async cambiarColor(){ 
     //if ternario
     this.colorActual = this.colorActual === this.colorOscuro ? this.colorClaro : this.colorOscuro
+    this.colorDiferente = this.colorActual === this.colorOscuro ? this.colorClaro : this.colorOscuro
     await this.storageServcie.set('theme', this.colorActual)
     console.log('Tema Guardado: ', this.colorActual )
   }
