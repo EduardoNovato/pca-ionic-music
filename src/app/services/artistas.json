@@ -1,4 +1,4 @@
-[
+{"artists": [
   {
     "nombre": "Luna Rivera",
     "genero": "Pop",
@@ -68,3 +68,4 @@
     ]
   }
 ]
+}

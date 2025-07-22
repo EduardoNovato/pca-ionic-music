@@ -14,11 +14,12 @@
   loop="true"
   slides-per-view="3"
   >
-  <swiper-slide *ngFor="let album of albums">
+  <swiper-slide *ngFor="let album of albums" (click)="showSongs(album.id)">
     <div class="slide-content">
       <img [src]="album.image"/>
       <p>{{ album.name }}</p>
     </div>
   </swiper-slide>
 </swiper-container>
+<!-- Mostrar un swiper o lista con los artistas del servidor y al darle clikc muestre las canciones de ese artista -->
 </ion-content>

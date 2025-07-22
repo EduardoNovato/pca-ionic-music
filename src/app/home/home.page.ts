@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicModule } from '@ionic/angular'
+import { IonicModule, ModalController } from '@ionic/angular'
 import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { StorageService } from '../services/storage.service';
 import { MusicService } from '../services/music.service';
+import { SongsModalPage } from '../songs-modal/songs-modal.page';
 
 @Component({
   selector: 'app-home',
@@ -28,9 +29,11 @@ export class HomePage implements OnInit {
   ]
   tracks: any;
   albums: any;
-  constructor(private storageServcie: StorageService, private musicService: MusicService) {}
+  localArtists: any;
+  constructor(private storageServcie: StorageService, private musicService: MusicService, private modalCtrl: ModalController) {}
 
   async ngOnInit() {
+    this.getLocalArtitsts();
     this.loadAlbums();
     this.loadTracks();
     await this.loadStorageData();
@@ -79,6 +82,26 @@ export class HomePage implements OnInit {
       }, 6000)
     })
   }
+
+  getLocalArtitsts(){
+    this.localArtists = this.musicService.getLocalArtists();
+    console.log("artistas: ",this.localArtists.artists)
+  }
+
+  async showSongs(albumId: string) {
+    console.log("album id: ",albumId)
+    const songs = await this.musicService.getSongsByAlbum(albumId);
+    console.log("songs: ", songs)
+    const modal = await this.modalCtrl.create({
+      component: SongsModalPage,
+      componentProps: {
+        songs: songs
+      }
+    });
+    modal.present();
+  }
+
+  //crear funcion ShowSongsByArtists que abrira el modal ya creado y enviara en los porps las canciones del artista
 
   //crear una funcion para ir a ver la intro se va conectar con un boton que debomos agregar en el html y al hacer click ejecute esta funcion apra llevarma a ver la intro
 }
